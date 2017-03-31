@@ -2,7 +2,6 @@ clear all; close all;
 
 l1 = 2;
 l2 = 1;
-
 y_zero = @(t1,t2) l1*sin(t1) + l2*sin(t1+t2);
 
 fimplicit(y_zero,[0, pi, -pi, pi], 'k');
