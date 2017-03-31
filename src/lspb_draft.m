@@ -1,10 +1,9 @@
 clear; close all;
 
 % Initial constraints
-%p = [0,1;5,6;3,3;7,8;1,2];
-p = [0,0;1,2;3,3;5,2.5;6,4];
+p = [0,0;1,2;3,3;5,2.5;5,4;4,5];
 v_max = [1,1];
-a_max = [0.6,0.6];
+a_max = [0.3,0.3];
 
 % Initialise parameters
 [n,d] = size(p);
@@ -13,24 +12,42 @@ T = zeros(1,n-1);
 v_lin = zeros(n+1,d);
 a_blend = zeros(n,d);
 
-% Compute duration and velocity of linear segments
+% Compute duration of linear segments
 for i = 1:n-1
     T(i) = max( abs(p(i+1,:) - p(i,:))./v_max );
 end
 T = [1 T 1]; % dummy, will be replaced later
 p = [p(1,:); p; p(end,:)]; % duplicate ends
-for i = 1:n+1
-    v_lin(i,:) = (p(i+1,:) - p(i,:))/T(i);
-end
 
-% Compute duration and acceleration of parabolic blends
-for i = 1:n
+% Compute velocities and parabolic blends considering limits
+i = 1;
+while i <= n
+    
+    v_lin(i,:) = (p(i+1,:) - p(i,:))/T(i);
+    v_lin(i+1,:) = (p(i+2,:) - p(i+1,:))/T(i+1);
     t_blend(i) = max( abs(v_lin(i+1,:) - v_lin(i,:))./a_max );
-    a_blend(i,:) = (v_lin(i+1,:) - v_lin(i,:))/t_blend(i);
+
+    if i==1
+        T(1) = t_blend(1)/2;
+    elseif i==n
+        T(end) = t_blend(n)/2;
+    end
+    
+    % Check if overlap of the blends
+    if ( (t_blend(i) > T(i+1)) && (i < n) ) || ...
+       ( (t_blend(i) > T(i)) && (i > 1))
+        f = sqrt(min(T(i), T(i+1))/t_blend(i));
+        T(i) = T(i)/f;
+        T(i+1) = T(i+1)/f;
+        i = 1;
+    else
+        a_blend(i,:) = (v_lin(i+1,:) - v_lin(i,:))/t_blend(i);
+        i = i + 1;
+    end
 end
-T(1) = t_blend(1)/2;
-T(end) = t_blend(end)/2;
 T_stamps = cumsum(T);
+
+
 
 % A small test to evalutate the path in time
 t = linspace(0,sum(T));
