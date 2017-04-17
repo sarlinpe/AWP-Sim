@@ -11,15 +11,15 @@ hs1 = plot(wspace, [xy0(1),xy1(1)], [xy0(2),xy1(2)], s, 'Linewidth', 1);
 hs2 = plot(wspace, [xy1(1),xy2(1)], [xy1(2),xy2(2)], s, 'Linewidth', 1);
 
 effector.center = xy2;
-effector.radius = 0.05;
+effector.radius = 0.15;
 hc2 = drawCircle(wspace, effector, 'k');
 
 joint.center = xy1;
-joint.radius = 0.05;
+joint.radius = 0.15;
 hc1 = drawCircle(wspace, joint, 'k');
 
 base.center = xy0;
-base.radius = 0.15;
+base.radius = 0.5;
 
 t = linspace(0,pi,100);
 drawxy = base.center + base.radius * [cos(t'),sin(t')];
