@@ -1,4 +1,5 @@
 clear; close all;
+addpath('./trajectory_generator');
 
 % Initial constraints
 p = [0,0;1,2;3,3;5,2.5;5,4;4,5];

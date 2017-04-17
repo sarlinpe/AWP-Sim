@@ -1,5 +1,5 @@
 clear; close all;
-addpath('./path_finder');
+addpath('./path_finder', './trajectory_generator');
 warning('off', 'robotics:robotalgs:occgridcommon:RoundoffWarning');
 
 %% Parameters
@@ -8,8 +8,8 @@ warning('off', 'robotics:robotalgs:occgridcommon:RoundoffWarning');
 robot.l1 = 1.9;
 robot.l2 = 1.1;
 th_init = [pi/3, -pi/4];
-v_max = [1,1];
-a_max = [0.3,0.3];
+v_max = [0.5,0.5];
+a_max = [0.2,0.2];
 
 % Environment
 th1_lim = [0,pi];
@@ -29,7 +29,7 @@ prm_dist = 0.5;
 
 % GUI
 display_reachable_ws = false;
-show_prm = true;
+show_prm = false;
 
 %% Create UI
 
@@ -180,6 +180,7 @@ while 1
     
     % In Cspace
     h = [h,plot(cspace, q(:,1),q(:,2),'b')];
+    h = [h,plotProfiles(robot, lspb, t, q, v, a)];
 
     % In Wspace
     r = robotics.Rate(10);
@@ -191,6 +192,7 @@ while 1
         delete(h_robot);
     end
     
+    axes(cspace);
     while ~waitforbuttonpress end
     if dialogGUI() continue; else break; end
     
