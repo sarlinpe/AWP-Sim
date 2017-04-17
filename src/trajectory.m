@@ -5,11 +5,11 @@ warning('off', 'robotics:robotalgs:occgridcommon:RoundoffWarning');
 %% Parameters
 
 % Robot
-robot.l1 = 1.9;
-robot.l2 = 1.1;
+robot.l1 = 6.5;
+robot.l2 = 7.5;
 th_init = [pi/3, -pi/4];
-v_max = [0.5,0.5];
-a_max = [0.2,0.2];
+v_max = [0.1,0.1];
+a_max = [0.005,0.005];
 
 % Environment
 th1_lim = [0,pi];
@@ -17,18 +17,20 @@ th2_lim = [-pi, pi];
 x_lim = (robot.l1+robot.l2)*[-1.1,1.1];
 y_lim = (robot.l1+robot.l2)*[-0.1,1.1];
 
-obstacles = [createCircle([0.8,2.1],0.2), ...
-             createCircle([-2.2,1.2],0.2), ...
-             createCircle([-0.9,2.2],0.2)];
+obstacles = [createCircle([5,10],0.5), ...
+             createCircle([-10,5],1.2), ...
+             createCircle([-2,13],0.8), ...
+             createCircle([-5.2,8],0.8), ...
+             createCircle([9,4.5],1)];
 
 % Path finding
-resolution = 100;
+cs_resolution = 200;
 inflate_rad = 0.05;
-nb_prm_nodes = 1500;
+nb_prm_nodes = 2000;
 prm_dist = 0.5;
 
 % GUI
-display_reachable_ws = false;
+display_reachable_ws = true;
 show_prm = false;
 
 %% Create UI
@@ -42,10 +44,13 @@ for obs = obstacles
     drawCircle(wspace, obs, 'k', true);
 end
 
+drawCircle(wspace, struct('center',[0,0],'radius',robot.l1+robot.l2), ...
+           'k:', false, 0, pi);
+
 %% Cspace collision map
 
 % Build
-map_cs = robotics.BinaryOccupancyGrid(diff(th1_lim),diff(th2_lim),resolution);
+map_cs = robotics.BinaryOccupancyGrid(diff(th1_lim),diff(th2_lim),cs_resolution);
 map_cs.GridLocationInWorld = [th1_lim(1),th2_lim(1)];
 collision_cs = cspaceCollision(robot,map_cs,obstacles,inflate_rad);
 
@@ -58,7 +63,8 @@ uistack(im,'bottom');
 
 if display_reachable_ws
     % Build
-    map_ws = robotics.BinaryOccupancyGrid(diff(x_lim),diff(y_lim),int16(resolution));
+    ws_resolution = int16(600/diff(x_lim));
+    map_ws = robotics.BinaryOccupancyGrid(diff(x_lim),diff(y_lim),ws_resolution);
     map_ws.GridLocationInWorld = [x_lim(1),y_lim(1)];
     collision_ws = wspaceCollision(robot,map_ws,map_cs,th1_lim,th2_lim);
     
@@ -153,15 +159,16 @@ while 1
         path = paths{idx};
     end
 
+    if show_prm
+        %h = [h,figure()];
+        show(prm,'Paren',cspace,'Map','off','Path','off');
+    end
+    
     h = [h,drawRobot(wspace, robot, th_end, 'b-')];
     h = [h,plot(cspace, th_end(1), th_end(2), 'bo')];
     h = [h,plot(cspace, path(:,1),path(:,2),'r*-')];
     drawnow
-
-    if show_prm
-        h = [h,figure()];
-        show(prm);
-    end
+    
     th_current = th_end;
 
     %% Perform pruning
@@ -175,7 +182,8 @@ while 1
 
     %% Plot trajectory
 
-    t = linspace(0,T_tot);
+    n = 100;
+    t = linspace(0,T_tot, n);
     [q,v,a] = lspb_get(t, lspb);
     
     % In Cspace
@@ -189,11 +197,14 @@ while 1
         h_robot = drawRobot(wspace, robot, q(i,:), 'k');
         drawnow
         waitfor(r);
-        delete(h_robot);
+        if mod(i,10) == 0
+            h = [h, h_robot];
+        else
+            delete(h_robot)
+        end
     end
     
     axes(cspace);
     while ~waitforbuttonpress end
     if dialogGUI() continue; else break; end
-    
 end
