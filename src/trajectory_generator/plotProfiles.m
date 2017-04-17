@@ -10,6 +10,8 @@ plot([0 lspb.T_stamps],lspb.p(:,1),'k*-');
 plot(t,q(:,1),'b','LineWidth',1);
 plot([0 lspb.T_stamps],lspb.p(:,2),'k*-')
 plot(t,q(:,2),'r','LineWidth',1);
+xlabel('t [s]');
+ylabel('\theta_1, \theta_2 [rad]');
 
 subplot(2,2,2);
 title('Velocities of joints');
@@ -17,6 +19,8 @@ hold on; grid on;
 xlim([0, t(end)]);
 plot(t,v(:,1),'b','LineWidth',1);
 plot(t,v(:,2),'r','LineWidth',1);
+xlabel('t [s]');
+ylabel('v_1, v_2 [rad/s]');
 
 subplot(2,2,3);
 title('Accelerations of joints');
@@ -24,6 +28,8 @@ hold on; grid on;
 xlim([0, t(end)]);
 plot(t,a(:,1),'b','LineWidth',1);
 plot(t,a(:,2),'r','LineWidth',1);
+xlabel('t [s]');
+ylabel('a_1, a_2 [rad/s^2]');
 
 l1 = robot.l1;
 l2 = robot.l2;
@@ -42,6 +48,8 @@ xlim([0, t(end)]);
 plot(t,vxy(:,1),'b','LineWidth',1);
 plot(t,vxy(:,2),'r','LineWidth',1);
 plot(t,sqrt(sum(vxy.^2,2)),'k','LineWidth',1);
+xlabel('t [s]');
+ylabel('v_x, v_y, v [rad/s]');
 
 end
 
