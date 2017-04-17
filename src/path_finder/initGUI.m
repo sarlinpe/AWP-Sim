@@ -15,6 +15,7 @@ ylim(y_lim);
 ylabel('y')
 box on; grid on; hold on;
 daspect([1,1,1]);
+line(x_lim, [0,0], 'color', 'k', 'linewidth', 1); % ground
 
 axes(cspace);
 title('Configuration space');
