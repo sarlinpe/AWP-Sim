@@ -1,4 +1,4 @@
-function h = drawCircle( ax, c, style, filled)
+function h = drawCircle( ax, c, style, filled, th1, th2)
 
 if ( nargin < 3 )
     style='b-';
@@ -6,9 +6,14 @@ end
 if ( nargin < 4 )
     filled = false;
 end
+if ( nargin < 5 )
+    th1 = 0;
+    th2 = 2*pi;
+end
+
 NOP = 30;
 
-th = linspace(0,2*pi,NOP);
+th = linspace(th1,th2,NOP);
 xy = c.center + c.radius * [cos(th'),sin(th')];
 
 if filled
