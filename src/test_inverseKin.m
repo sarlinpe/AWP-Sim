@@ -8,7 +8,7 @@ h = axes();
 daspect([1,1,1]);
 hold on;
 
-xy = [0.5,1];
+xy = [0.2,1];
 plot(xy(1),xy(2),'k*');
 
 th = inverseKin(robot, xy);
