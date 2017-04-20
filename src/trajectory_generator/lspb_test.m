@@ -1,3 +1,10 @@
+% Title:        ME5402 Project 1-2: Trajectory Planning
+% File:         lspb_test.m
+% Date:         2017-04-20
+% Author:       Nicolai Domingo Nielsen (A0164015R)
+%               Paul-Edouard Sarlin (A0153124U)
+% Description:  Demonstrates how to use the LSPB init and get functions.
+
 clear; close all;
 addpath('./trajectory_generator');
 

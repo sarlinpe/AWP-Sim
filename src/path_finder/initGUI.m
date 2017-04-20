@@ -1,3 +1,10 @@
+% Title:        ME5402 Project 1-2: Trajectory Planning
+% File:         initGUI.m
+% Date:         2017-04-20
+% Author:       Nicolai Domingo Nielsen (A0164015R)
+%               Paul-Edouard Sarlin (A0153124U)
+% Description:  Initialise the main C-space and W-space GUI.
+
 function [cspace, wspace] = initGUI(x_lim, y_lim, th1_lim, th2_lim)
 
 s = get( 0,'Screensize');

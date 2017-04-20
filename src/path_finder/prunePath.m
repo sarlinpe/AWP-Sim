@@ -1,3 +1,10 @@
+% Title:        ME5402 Project 1-2: Trajectory Planning
+% File:         prunePath.m
+% Date:         2017-04-20
+% Author:       Nicolai Domingo Nielsen (A0164015R)
+%               Paul-Edouard Sarlin (A0153124U)
+% Description:  Remove unnecessary waypoints from a path.
+
 function [ pruned ] = prunePath( path, map_cs )
 
 pruned = [path(1,:)];

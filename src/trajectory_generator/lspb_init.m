@@ -1,3 +1,11 @@
+% Title:        ME5402 Project 1-2: Trajectory Planning
+% File:         lspb_init.m
+% Date:         2017-04-20
+% Author:       Nicolai Domingo Nielsen (A0164015R)
+%               Paul-Edouard Sarlin (A0153124U)
+% Description:  Initializer for the Linear Segments with Parabolic Blends
+%               generator handler.
+
 function [ lspb, T_tot ] = lspb_init( p, v_max, a_max )
 
 % Initialise parameters

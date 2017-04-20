@@ -1,3 +1,10 @@
+% Title:        ME5402 Project 1-2: Trajectory Planning
+% File:         drawRobot.m
+% Date:         2017-04-20
+% Author:       Nicolai Domingo Nielsen (A0164015R)
+%               Paul-Edouard Sarlin (A0153124U)
+% Description:  Draw the robot links on the given axis handler.
+
 function [ h ] = drawRobot( wspace, robot, th1th2, s )
 
 if ( nargin < 4 )

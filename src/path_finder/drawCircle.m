@@ -1,3 +1,10 @@
+% Title:        ME5402 Project 1-2: Trajectory Planning
+% File:         drawCircle.m
+% Date:         2017-04-20
+% Author:       Nicolai Domingo Nielsen (A0164015R)
+%               Paul-Edouard Sarlin (A0153124U)
+% Description:  Draw the circle structure on the given axis handler.
+
 function h = drawCircle( ax, c, style, filled, th1, th2)
 
 if ( nargin < 3 )

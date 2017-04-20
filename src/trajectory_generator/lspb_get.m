@@ -1,3 +1,10 @@
+% Title:        ME5402 Project 1-2: Trajectory Planning
+% File:         lspb_get.m
+% Date:         2017-04-20
+% Author:       Nicolai Domingo Nielsen (A0164015R)
+%               Paul-Edouard Sarlin (A0153124U)
+% Description:  Compute LSPB trajectory references for some points in time.
+
 function [ q, v, a ] = lspb_get( t, lspb )
 
 % Unpack trajectory parameters

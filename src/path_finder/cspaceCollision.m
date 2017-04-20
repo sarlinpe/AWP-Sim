@@ -1,3 +1,10 @@
+% Title:        ME5402 Project 1-2: Trajectory Planning
+% File:         cspaceCollision.m
+% Date:         2017-04-20
+% Author:       Nicolai Domingo Nielsen (A0164015R)
+%               Paul-Edouard Sarlin (A0153124U)
+% Description:  Create the binary grid of the collision C-space.
+
 function [collision] = cspaceCollision(robot, map, obstacles, inflate_rad)
 
 s = map.GridSize; nrows = s(1); ncols = s(2);
