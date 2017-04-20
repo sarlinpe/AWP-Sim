@@ -220,14 +220,16 @@ while 1
     % Plot animations
     disp('Animation begins.')
     r = robotics.Rate(10);
+    cnt = 0;
     for i = round(linspace(2,length(T)-1,100))
-        hold on;
+        hold on; 
+        cnt = cnt + 1;
         h_robot = [];
         h_ref = drawRobot(wspace, robot, th_ref(i,:), 'k');
         h_ctrl = drawRobot(wspace, robot, th_ctrl(i,:), 'c');
         drawnow
         waitfor(r);
-        if display_intermediate_anim && (mod(i,10) == 0)
+        if display_intermediate_anim && (mod(cnt,10) == 0) && (cnt ~= 100)
             h = [h, h_ref, h_ctrl];
         else
             delete(h_ref)

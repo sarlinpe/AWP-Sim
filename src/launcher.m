@@ -11,7 +11,7 @@ addpath('./path_finder', './trajectory_generator', './controller');
 
 %% User interface
 display_reachable_ws = true;        % takes significant time to compute...
-display_intermediate_anim = true;  % intermediate configurations of the arm
+display_intermediate_anim = false;  % intermediate configurations of the arm
 display_waypoints = true;           % A* and pruned waypoints
 show_prm = false;                   % PRM nodes and edges
 
