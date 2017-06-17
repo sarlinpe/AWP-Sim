@@ -1,8 +1,8 @@
-% Title:        ME5402 Project 1-2: Trajectory Planning
+% Title:        AWP Trajectory Planning and Control
 % File:         drawCircle.m
 % Date:         2017-04-20
-% Author:       Nicolai Domingo Nielsen (A0164015R)
-%               Paul-Edouard Sarlin (A0153124U)
+% Authors:      Nicolai Domingo Nielsen
+%               Paul-Edouard Sarlin
 % Description:  Draw the circle structure on the given axis handler.
 
 function h = drawCircle( ax, c, style, filled, th1, th2)

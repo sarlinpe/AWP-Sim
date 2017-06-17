@@ -1,8 +1,8 @@
-% Title:        ME5402 Project 1-2: Trajectory Planning
+% Title:        AWP Trajectory Planning and Control
 % File:         wspaceCollision.m
 % Date:         2017-04-20
-% Author:       Nicolai Domingo Nielsen (A0164015R)
-%               Paul-Edouard Sarlin (A0153124U)
+% Authors:      Nicolai Domingo Nielsen
+%               Paul-Edouard Sarlin
 % Description:  Create the binary grid of the collision W-space from the
 %               one of the C-space. Not very efficient, but the only
 %               solution found so far if we performe dilatation.

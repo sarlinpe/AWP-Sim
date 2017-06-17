@@ -1,8 +1,8 @@
-% Title:        ME5402 Project 1-2: Trajectory Planning
+% Title:        AWP Trajectory Planning and Control
 % File:         linspacen.m
 % Date:         2017-04-20
-% Author:       Nicolai Domingo Nielsen (A0164015R)
-%               Paul-Edouard Sarlin (A0153124U)
+% Authors:      Nicolai Domingo Nielsen
+%               Paul-Edouard Sarlin
 % Description:  Discretise the line between the sets of points (x1,x2).
 
 function [lin] = linspacen(x1, x2, n)
